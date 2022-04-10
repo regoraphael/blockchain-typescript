@@ -1,4 +1,4 @@
-import { BinaryLike, createHash } from 'crypto'
+import { BinaryLike, createHash } from 'crypto';
 
 interface ParamsIsHashProfeed {
   hash: string;
@@ -6,13 +6,13 @@ interface ParamsIsHashProfeed {
   prefix?: string;
 }
 
-export const hash =  (data: BinaryLike) => createHash('sha256').update(data).digest('hex');
+export const generateHash = (data: BinaryLike) => createHash('sha256').update(data).digest('hex');
 
 export const isHashProofed = ({
   hash,
   difficulty = 4,
   prefix = '0',
-}:ParamsIsHashProfeed ) =>  {
+}:ParamsIsHashProfeed) => {
   const check = prefix.repeat(difficulty);
   return hash.startsWith(check);
 };
